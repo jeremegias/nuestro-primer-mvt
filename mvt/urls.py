@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from familiares_app.views import index
-from familiares_app.views import index, monstrar_familiares
-from familiares_app.views import (index, monstrar_familiares, BuscarFamiliar)
+from familiares_app.views import (monstrar_familiares, BuscarFamiliar, AltaFamiliar, ActualizarFamiliar, BorrarFamiliar)
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('saludar/', index), 
-    path('mi-familia/', monstrar_familiares),
-    path('mi-familia/buscar', BuscarFamiliar.as_view())
+    path('admin/', admin.site.urls), 
+    path('familiares/', monstrar_familiares),
+    path('familiares/buscar', BuscarFamiliar.as_view()),
+    path('familiares/alta_familiar', AltaFamiliar.as_view()),
+    path('familiares/borrar/<int:pk>', ActualizarFamiliar.as_view()),
+    path('familiares/actualizar/<int:pk>', BorrarFamiliar.as_view()),
 ]
+ 
 

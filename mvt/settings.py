@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y7e3qg)^tt3h13xlv&a16qiji^hdh%34tcz2ao2urn3d!p@#q8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG=True
 
 ALLOWED_HOSTS = []
 
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'familiares_app.apps.FamiliaresConfig', # ESTA ES LA NUEVA APP !!
+    'familiares_app',
 ]
 
 MIDDLEWARE = [
