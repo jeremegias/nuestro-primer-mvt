@@ -3,7 +3,7 @@ from familiares_app.models import Familiar, Automovil, Mascota
 from familiares_app.forms import Buscar
 from familiares_app.forms import Buscar, FamiliarForm
 from django.views import View
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView# <----- NUEVO IMPORT
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView# <----- NUEVO IMPORT
 
 
 def monstrar_familiares(request):
@@ -98,9 +98,11 @@ class BorrarFamiliar(View):
         return render(request, self.template_name, {'lista_familiares': familiares})
 
 
-class FamiliarList(ListView):
-    model = Familiar, Automovil, Mascota
 
+
+class FamiliarList(ListView):
+    model = Familiar
+   
 class FamiliarCrear(CreateView):
   model = Familiar
   success_url = "/panel-familia"
@@ -112,3 +114,43 @@ class FamiliarActualizar(UpdateView):
   model = Familiar
   success_url = "/panel-familia"
   fields = ["nombre", "direccion", "numero_pasaporte"]
+
+class FamiliarDetalle(DetailView):
+  model = Familiar  
+
+
+class MascotaList(ListView):
+    model = Mascota
+   
+class MascotaCrear(CreateView):
+  model = Mascota
+  success_url = "/panel-mascota"
+  fields = ["especie", "nombre", "edad"]
+class MascotaBorrar(DeleteView):
+  model = Mascota
+  success_url = "/panel-familia"  
+class MascotaActualizar(UpdateView):
+  model = Mascota
+  success_url = "/panel-mascota"
+  fields = ["especie", "nombre", "edad"]
+
+
+
+class AutomovilList(ListView):
+  model = Automovil
+   
+class AutomovilCrear(CreateView):
+  model = Automovil
+  success_url = "/panel-automovil"
+  fields = ["marca", "modelo", "año"]
+class AutomovilBorrar(DeleteView):
+  model = Automovil
+  success_url = "/panel-automovil"  
+class AutomovilActualizar(UpdateView):
+  model = Automovil
+  success_url = "/panel-automovil"
+  fields = ["marca", "modelo", "año"]
+
+
+
+

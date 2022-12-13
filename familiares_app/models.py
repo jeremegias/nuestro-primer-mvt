@@ -13,11 +13,11 @@ class Automovil(models.Model):
     modelo = models.CharField(max_length=200)
     año = models.IntegerField()
     def __str__(self):
-        return f"{self.id} ,{self.Marca}, {self.Modelo}, {self.Año},"     
+        return f"{self.id} ,{self.marca}, {self.modelo}, {self.año},"     
 
 class Mascota(models.Model):
     especie = models.CharField(max_length=100)
     nombre = models.CharField(max_length=200)
     edad = models.IntegerField()
     def __str__(self):
-        return f"{self.id} ,{self.Especie}, {self.Nombre}, {self.Edad}," 
+        return f"{self.id} ,{self.especie}, {self.nombre}, {self.edad}," 
