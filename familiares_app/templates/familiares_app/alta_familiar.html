@@ -2,7 +2,7 @@
 {% block titulo%} Alta de nuevo Familiar {% endblock %}
 {% block contenido %}
   
-<form action="/familiares_app/alta_familiar" method="post">
+<form action="/familiares/alta_familiar" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">

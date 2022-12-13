@@ -15,14 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from familiares_app.views import (monstrar_familiares, BuscarFamiliar, AltaFamiliar, ActualizarFamiliar, BorrarFamiliar)
+from familiares_app.views import (monstrar_familiares, BuscarFamiliar, AltaFamiliar, ActualizarFamiliar, 
+BorrarFamiliar, FamiliarList, FamiliarCrear, FamiliarBorrar, FamiliarActualizar)
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path('familiares/', monstrar_familiares),
     path('familiares/buscar', BuscarFamiliar.as_view()),
     path('familiares/alta_familiar', AltaFamiliar.as_view()),
-    path('familiares/borrar/<int:pk>', ActualizarFamiliar.as_view()),
-    path('familiares/actualizar/<int:pk>', BorrarFamiliar.as_view()),
+    path('familiares/actualizar_familiar/<int:pk>', ActualizarFamiliar.as_view()),
+    path('familiares/borrar/<int:pk>', BorrarFamiliar.as_view()),
+    path('panel-familia/', FamiliarList.as_view()), # NUEVA RUTA PARA LISTAR FAMILIAR
+    path('panel-familia/crear', FamiliarCrear.as_view()), # NUEVA RUTA PARA LISTAR FAMILIAR
+    path('panel-familia/<int:pk>/borrar', FamiliarBorrar.as_view()),
+    path('panel-familia/<int:pk>/actualizar', FamiliarActualizar.as_view()),
 ]
  
 

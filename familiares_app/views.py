@@ -1,9 +1,10 @@
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from familiares_app.models import Familiar
+from familiares_app.models import Familiar, Automovil, Mascota
 from familiares_app.forms import Buscar
 from familiares_app.forms import Buscar, FamiliarForm
 from django.views import View
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView# <----- NUEVO IMPORT
+
 
 def monstrar_familiares(request):
     lista_familiares = Familiar.objects.all()
@@ -67,24 +68,24 @@ class ActualizarFamiliar(View):
     initial = {"nombre":"", "direccion":"", "numero_pasaporte":""}
 
    # prestar atención ahora el method get recibe un parametro pk == primaryKey == identificador único
-def get(self, request, pk): 
-    familiar = get_object_or_404(Familiar, pk=pk)
-    form = self.form_class(instance=familiar)
-    return render(request, self.template_name, {'form':form,'familiar': familiar})
+    def get(self, request, pk): 
+        familiar = get_object_or_404(Familiar, pk=pk)
+        form = self.form_class(instance=familiar)
+        return render(request, self.template_name, {'form':form,'familiar': familiar})
 
-   # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
-def post(self, request, pk): 
-    familiar = get_object_or_404(Familiar, pk=pk)
-    form = self.form_class(request.POST ,instance=familiar)
-    if form.is_valid():
-        form.save()
-        msg_exito = f"se actualizó con éxito el familiar {form.cleaned_data.get('nombre')}"
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form':form, 
-                                                       'familiar': familiar,
-                                                       'msg_exito': msg_exito})
+    # prestar atención ahora el method post recibe un parametro pk == primaryKey == identificador único
+    def post(self, request, pk): 
+        familiar = get_object_or_404(Familiar, pk=pk)
+        form = self.form_class(request.POST ,instance=familiar)
+        if form.is_valid():
+            form.save()
+            msg_exito = f"se actualizó con éxito el familiar {form.cleaned_data.get('nombre')}"
+            form = self.form_class(initial=self.initial)
+            return render(request, self.template_name, {'form':form, 
+                                                        'familiar': familiar,
+                                                        'msg_exito': msg_exito})
 
-        return render(request, self.template_name, {"form": form})
+            return render(request, self.template_name, {"form": form})
 
 
 class BorrarFamiliar(View):
@@ -96,3 +97,18 @@ class BorrarFamiliar(View):
         familiares = Familiar.objects.all()
         return render(request, self.template_name, {'lista_familiares': familiares})
 
+
+class FamiliarList(ListView):
+    model = Familiar, Automovil, Mascota
+
+class FamiliarCrear(CreateView):
+  model = Familiar
+  success_url = "/panel-familia"
+  fields = ["nombre", "direccion", "numero_pasaporte"]
+class FamiliarBorrar(DeleteView):
+  model = Familiar
+  success_url = "/panel-familia"  
+class FamiliarActualizar(UpdateView):
+  model = Familiar
+  success_url = "/panel-familia"
+  fields = ["nombre", "direccion", "numero_pasaporte"]
