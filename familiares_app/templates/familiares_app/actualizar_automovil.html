@@ -1,0 +1,16 @@
+{% extends 'familiares_app/base_automoviles.html' %}
+{% block titulo%} Modificar un Automovil {% endblock %}
+{% block contenido %}
+
+<!-- Prestar atención a la variable familiar.id -->
+<form action="/automoviles/actualizar_automovil/{{ automovil.id }}" method="post">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <input type="submit" value="Actualizar">
+</form>
+
+<h2 style="color:green">{{msg_exito}}</h2>
+
+<a href="/automoviles">Volver a la lista de Automoviles</a>
+
+{% endblock %}

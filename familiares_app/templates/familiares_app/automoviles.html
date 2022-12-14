@@ -1,0 +1,18 @@
+{% extends 'familiares_app/base_automoviles.html' %}
+
+{% block titulo%} 
+Lista de todos los Automoviles
+{% endblock %}
+{% block contenido %}
+    <a href="/automoviles/alta_automovil">Nuevo Automovil</a>
+    <a href="/automoviles/buscar">Buscar Automovil</a>
+    </ul>
+    {% for automovil in lista_automovil %}
+        <li>
+            Id: {{automovil.id}} Marca: {{automovil.marca}}, Modelo: {{automovil.modelo}}, Año: {{automovil.año}}
+            <a href="/automoviles/actualizar_automovil/{{ automovil.id }}">Actualizar</a>
+            <a href="/automoviles/borrar/{{ automovil.id }}">Borrar</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

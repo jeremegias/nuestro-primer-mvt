@@ -1,0 +1,18 @@
+{% extends 'familiares_app/base_mascota.html' %}
+
+{% block titulo%} 
+Lista de todos mis Mascotas
+{% endblock %}
+{% block contenido %}
+    <a href="/mascotas/alta_mascota">Nueva Mascota</a>
+    <a href="/mascotas/buscar">Buscar Mascota</a>
+    </ul>
+    {% for mascota in lista_mascotas %}
+        <li>
+            Id: {{mascota.id}} Especie: {{especie.especie}}, Nombre: {{mascota.nombre}}, Edad: {{mascota.edad}}
+            <a href="/mascotas/actualizar_mascota/{{ mascota.id }}">Actualizar</a>
+            <a href="/mascotas/borrar/{{ mascota.id }}">Borrar</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
